@@ -6,17 +6,22 @@ html {
 }
 
 .main-container {
-    background-color: green;
+    background-color: #292929;
     width: 100vw;
     height: 100vh;
 }
 
 .display {
-    background-color: whitesmoke;
-    color: black;
-    width: 500px;
+    background-color: #292929;
+    color: white;
+    width: 450px;
     height: 30%;
     margin: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    text-align: right;
+    overflow-wrap: break-word;
 }
 
 .buttons-container {
