@@ -69,15 +69,16 @@ function checkResult() {
 }
 
 function solve() {
-  result = operate(operator, firstNumber, secondNumber);
-  resultDisplay.textContent = result;
-  console.log(firstNumber);
-  console.log(operator);
-  console.log(secondNumber);
-  console.log(result);
-  firstNumber = result;
-  secondNumber = null;
-  inputDisplay.textContent = null;
+  if (!checkSecondNumber()) {
+    console.log("Syntax Error");
+  } else {
+    result = operate(operator, firstNumber, secondNumber);
+    resultDisplay.textContent = result;
+    console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+    firstNumber = null;
+    secondNumber = null;
+    inputDisplay.textContent = null;
+  }
 }
 
 const inputDisplay = document.querySelector(".input");
@@ -95,6 +96,7 @@ clear.addEventListener("click", () => {
   firstNumber = null;
   operator = null;
   secondNumber = null;
+  result = null;
   inputDisplay.textContent = null;
   resultDisplay.textContent = null;
 });
@@ -102,30 +104,20 @@ clear.addEventListener("click", () => {
 const operations = document.querySelectorAll(".operations");
 operations.forEach((element) => {
   element.addEventListener("click", () => {
-    firstNumber = inputDisplay.textContent;
+    if (checkFirstNumber()) {
+      secondNumber = inputDisplay.textContent;
+    } else {
+      firstNumber = inputDisplay.textContent;
+    }
+    if (checkFirstNumber() && checkSecondNumber()) {
+      solve();
+    }
     if (!checkFirstNumber()) {
-      firstNumber = resultDisplay.textContent;
+      firstNumber = result;
     }
-    switch (element.textContent) {
-      case "+":
-        operator = element.textContent;
-        break;
-      case "-":
-        operator = element.textContent;
-        break;
-      case "*":
-        operator = element.textContent;
-        break;
-      case "/":
-        operator = element.textContent;
-        break;
-      default:
-        break;
-    }
+    operator = element.textContent;
     inputDisplay.textContent = null;
-    console.log(firstNumber);
-    console.log(operator);
-    console.log(secondNumber);
+    console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
   });
 });
 
