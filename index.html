@@ -1,53 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
+  </head>
 
-<body>
-    <div class="main-container">
-        <div class="display"></div>
-        <div class="buttons-container">
-            <div class='symbols' id="clear"><a class="my-super-cool-btn" href="#"><span>C</span></a></div>
-            <div class='symbols' id="open-parenthesis"><a class="my-super-cool-btn" href="#"><span>(</span></a></div>
-            <div class='symbols' id="close-parenthesis"><a class="my-super-cool-btn" href="#"><span>)</span></a></div>
-            <div class='symbols' id="square-root"><a class="my-super-cool-btn" href="#"><span>√</span></a></div>
-            <div class='symbols' id="percent"><a class="my-super-cool-btn" href="#"><span>%</span></a></div>
-            <div class='symbols' id="plus-minus"><a class="my-super-cool-btn" href="#"><span>±</span></a></div>
-            <div class='numbers' id="number7"><a class="my-super-cool-btn" href="#"><span>7</span></a></div>
-            <div class='numbers' id="number8"><a class="my-super-cool-btn" href="#"><span>8</span></a></div>
-            <div class='numbers' id="number9"><a class="my-super-cool-btn" href="#"><span>9</span></a></div>
-            <div class='numbers' id="number4"><a class="my-super-cool-btn" href="#"><span>4</span></a></div>
-            <div class='numbers' id="number5"><a class="my-super-cool-btn" href="#"><span>5</span></a></div>
-            <div class='numbers' id="number6"><a class="my-super-cool-btn" href="#"><span>6</span></a></div>
-            <div class='numbers' id="number1"><a class="my-super-cool-btn" href="#"><span>1</span></a></div>
-            <div class='numbers' id="number2"><a class="my-super-cool-btn" href="#"><span>2</span></a></div>
-            <div class='numbers' id="number3"><a class="my-super-cool-btn" href="#"><span>3</span></a></div>
-            <div class='numbers' id="decimal-point"><a class="my-super-cool-btn" href="#"><span>.</span></a></div>
-            <div class='numbers' id="number0"><a class="my-super-cool-btn" href="#"><span>0</span></a></div>
-            <div class='numbers' id="backspace"><a class="my-super-cool-btn" href="#"><span>⌫</span></a></div>
-            <div class='operators' id="multiply"><a class="my-super-cool-btn" href="#"><span>×</span></a></div>
-            <div class='operators' id="divide"><a class="my-super-cool-btn" href="#"><span>÷</span></a></div>
-            <div class='operators' id="minus"><a class="my-super-cool-btn" href="#"><span>−</span></a></div>
-            <div class='operators' id="plus"><a class="my-super-cool-btn" href="#"><span>+</span></a></div>
-            <div class='operators' id="equals"><a class="my-super-cool-btn" href="#">
-                    <div class="dots-container">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div><span id="equals-span">=</span>
-                </a></div>
-        </div>
+  <body>
+    <div class="display">
+      <div class="input"></div>
+      <div class="result"></div>
     </div>
-</body>
-<script src="index.js"></script>
-
+    <button class="numbers">0</button>
+    <button class="numbers">1</button>
+    <button class="numbers">2</button>
+    <button class="numbers">3</button>
+    <button class="numbers">4</button>
+    <button class="numbers">5</button>
+    <button class="numbers">6</button>
+    <button class="numbers">7</button>
+    <button class="numbers">8</button>
+    <button class="numbers">9</button>
+    <button class="operations" id="add">+</button>
+    <button class="operations" id="subtract">-</button>
+    <button class="operations" id="multiply">*</button>
+    <button class="operations" id="divide">/</button>
+    <button class="functions" id="equals">=</button>
+    <button class="functions" id="clear">C</button>
+  </body>
+  <script src="index.js"></script>
 </html>
