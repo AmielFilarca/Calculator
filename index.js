@@ -69,8 +69,13 @@ function checkResult() {
 }
 
 function solve() {
-  if (!checkSecondNumber()) {
-    console.log("Syntax Error");
+  if (!checkFirstNumber() || !checkSecondNumber()) {
+    resultDisplay.textContent = "Syntax Error";
+    firstNumber = null;
+    operator = null;
+    secondNumber = null;
+    result = null;
+    inputDisplay.textContent = null;
   } else {
     result = operate(operator, firstNumber, secondNumber);
     resultDisplay.textContent = result;
