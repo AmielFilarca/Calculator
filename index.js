@@ -82,8 +82,8 @@ function solve() {
   } else if (operator == "/" && secondNumber == 0) {
     resultDisplay.textContent = "Syntax Error";
   } else {
-    result = operate(operator, firstNumber, secondNumber);
-    resultDisplay.textContent = round(result, 2);
+    result = round(operate(operator, firstNumber, secondNumber), 2);
+    resultDisplay.textContent = `${firstNumber} ${operator} ${secondNumber} = ${result}`;
     console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
     firstNumber = null;
     secondNumber = null;
@@ -102,12 +102,14 @@ const resultDisplay = document.querySelector(".result");
 const numbers = document.querySelectorAll(".numbers");
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
-    if (number.textContent == ".") {
-      if (!checkDecimal()) {
+    if (inputDisplay.textContent.length < 9) {
+      if (number.textContent == ".") {
+        if (!checkDecimal()) {
+          inputDisplay.textContent += number.textContent;
+        }
+      } else {
         inputDisplay.textContent += number.textContent;
       }
-    } else {
-      inputDisplay.textContent += number.textContent;
     }
   });
 });
@@ -167,7 +169,9 @@ window.addEventListener(
 
     if (event.key in numbers) {
       animate(document.querySelector(`#num${event.key}`));
-      inputDisplay.textContent += event.key;
+      if (inputDisplay.textContent.length < 9) {
+        inputDisplay.textContent += event.key;
+      }
     }
 
     switch (event.key) {

@@ -1,22 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 :root {
-  --main-bg-color: #292929;
+  --main-bg-color: #243342;
+  --font-color: #ecf0f1;
+  --accent-color: #ecf0f1;
 }
 html {
   background-color: var(--main-bg-color);
-  color: white;
+  font-family: "Lato", sans-serif;
 }
 .main-container {
   width: 600px;
-  height: 100vh;
+  height: 80vh;
   margin: auto;
 }
 .display {
-  width: 600px;
-  height: 40%;
+  margin: 50px 0px 40px;
+  padding: 30px 20px;
+  width: 90%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 7px solid var(--accent-color);
+  color: var(--font-color);
+  box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+}
+.display .input {
+  height: 50%;
+  width: 100%;
+  flex-grow: 1;
+  font-family: "Lato", sans-serif;
+  font-size: 3rem;
+  overflow: hidden;
+  text-align: end;
+}
+.display .result {
+  height: 50%;
+  width: 100%;
+  flex-grow: 1;
+  font-family: "Lato", sans-serif;
+  font-size: 3em;
+  overflow: hidden;
+  text-align: end;
 }
 .buttons {
   width: 100%;
-  height: 60%;
+  height: 70%;
   display: flex;
 }
 .input-buttons {
@@ -26,12 +56,16 @@ html {
     [col0] calc(100% / 3) [col1] calc(100% / 3) [col2] calc(100% / 3)
     [col3];
   grid-template-rows: [row0] 25% [row1] 25% [row2] 25% [row3] 25% [row4];
+  justify-items: center;
+  align-items: center;
 }
 .function-buttons {
   width: 40%;
   display: grid;
   grid-template-columns: [col0] 50% [col1] 50% [col2];
   grid-template-rows: [row0] 25% [row1] 25% [row2] 25% [row3] 25% [row4];
+  justify-items: center;
+  align-items: center;
 }
 #clear {
   grid-column-start: col0;
@@ -39,7 +73,7 @@ html {
   grid-row-start: row0;
   grid-row-end: row1;
   width: 200px;
-  height: 100px;
+  border-radius: 12px;
 }
 #equals {
   grid-column-start: col0;
@@ -47,25 +81,16 @@ html {
   grid-row-start: row3;
   grid-row-end: row4;
   width: 200px;
-  height: 100px;
+  border-radius: 12px;
 }
-
 #clear::before,
 #equals::before {
   width: 200px;
-  height: 100px;
   border-radius: 12px;
 }
 button {
-  display: inline-block;
   border: none;
-  padding: 1rem 2rem;
-  margin: 0;
   text-decoration: none;
-  background: #292929;
-  color: #ffffff;
-  font-family: sans-serif;
-  font-size: 1rem;
   cursor: pointer;
   text-align: center;
   -webkit-appearance: none;
@@ -74,13 +99,16 @@ button {
 button {
   position: relative;
   text-decoration: none;
-  color: #fff;
+  background: var(--main-bg-color);
+  color: var(--font-color);
   letter-spacing: 1px;
-  font-size: 2rem;
+  font-family: "Lato", sans-serif;
+  font-size: 2.5rem;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 100%;
   width: 100px;
   height: 100px;
   transition: all 0.2s;
@@ -92,7 +120,7 @@ button::before {
   display: block;
   position: absolute;
   border-radius: 100%;
-  border: 7px solid #f3cf14;
+  border: 7px solid var(--accent-color);
   box-sizing: border-box;
   /* transition: all 0.85s cubic-bezier(0.25, 1, 0.33, 1); */
   box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
@@ -117,4 +145,19 @@ button:focus {
   100% {
     transform: scale(0.8);
   }
+}
+.numbers::before {
+  border: 7px solid #ecf0f1;
+}
+#backspace::before {
+  border: 7px solid #ecf0f1;
+}
+#clear::before {
+  border: 7px solid #e74c3c;
+}
+.operations::before {
+  border: 7px solid #3498db;
+}
+#equals::before {
+  border: 7px solid #2980b9;
 }
