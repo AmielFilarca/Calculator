@@ -31,11 +31,6 @@ function operate(operator, a, b) {
   }
 }
 
-let firstNumber = null;
-let operator = null;
-let secondNumber = null;
-let result = null;
-
 function checkFirstNumber() {
   if (firstNumber) {
     return true;
@@ -68,6 +63,14 @@ function checkResult() {
   }
 }
 
+function checkDecimal() {
+  return inputDisplay.textContent.includes(".");
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+}
+
 function solve() {
   if (!checkFirstNumber() || !checkSecondNumber()) {
     resultDisplay.textContent = "Syntax Error";
@@ -76,9 +79,11 @@ function solve() {
     secondNumber = null;
     result = null;
     inputDisplay.textContent = null;
+  } else if (operator == "/" && secondNumber == 0) {
+    resultDisplay.textContent = "Syntax Error";
   } else {
     result = operate(operator, firstNumber, secondNumber);
-    resultDisplay.textContent = result;
+    resultDisplay.textContent = round(result, 2);
     console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
     firstNumber = null;
     secondNumber = null;
@@ -86,13 +91,24 @@ function solve() {
   }
 }
 
+let firstNumber = null;
+let operator = null;
+let secondNumber = null;
+let result = null;
+
 const inputDisplay = document.querySelector(".input");
 const resultDisplay = document.querySelector(".result");
 
 const numbers = document.querySelectorAll(".numbers");
 numbers.forEach((number) => {
   number.addEventListener("click", () => {
-    inputDisplay.textContent += number.textContent;
+    if (number.textContent == ".") {
+      if (!checkDecimal()) {
+        inputDisplay.textContent += number.textContent;
+      }
+    } else {
+      inputDisplay.textContent += number.textContent;
+    }
   });
 });
 
@@ -131,3 +147,132 @@ equals.addEventListener("click", () => {
   secondNumber = inputDisplay.textContent;
   solve();
 });
+
+const backspace = document.querySelector("#backspace");
+backspace.addEventListener("click", () => {
+  inputDisplay.textContent = inputDisplay.textContent.substring(
+    0,
+    inputDisplay.textContent.length - 1
+  );
+});
+
+window.addEventListener(
+  "keydown",
+  function (event) {
+    if (event.defaultPrevented) {
+      return; // Do nothing if the event was already processed
+    }
+
+    if (event.key in numbers) {
+      inputDisplay.textContent += event.key;
+    }
+
+    switch (event.key) {
+      case "+":
+        if (checkFirstNumber()) {
+          secondNumber = inputDisplay.textContent;
+        } else {
+          firstNumber = inputDisplay.textContent;
+        }
+        if (checkFirstNumber() && checkSecondNumber()) {
+          solve();
+        }
+        if (!checkFirstNumber()) {
+          firstNumber = result;
+        }
+        operator = event.key;
+        inputDisplay.textContent = null;
+        console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+        break;
+      case "-":
+        if (checkFirstNumber()) {
+          secondNumber = inputDisplay.textContent;
+        } else {
+          firstNumber = inputDisplay.textContent;
+        }
+        if (checkFirstNumber() && checkSecondNumber()) {
+          solve();
+        }
+        if (!checkFirstNumber()) {
+          firstNumber = result;
+        }
+        operator = event.key;
+        inputDisplay.textContent = null;
+        console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+        break;
+      case "*":
+        if (checkFirstNumber()) {
+          secondNumber = inputDisplay.textContent;
+        } else {
+          firstNumber = inputDisplay.textContent;
+        }
+        if (checkFirstNumber() && checkSecondNumber()) {
+          solve();
+        }
+        if (!checkFirstNumber()) {
+          firstNumber = result;
+        }
+        operator = event.key;
+        inputDisplay.textContent = null;
+        console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+        break;
+      case "/":
+        if (checkFirstNumber()) {
+          secondNumber = inputDisplay.textContent;
+        } else {
+          firstNumber = inputDisplay.textContent;
+        }
+        if (checkFirstNumber() && checkSecondNumber()) {
+          solve();
+        }
+        if (!checkFirstNumber()) {
+          firstNumber = result;
+        }
+        operator = event.key;
+        inputDisplay.textContent = null;
+        console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+        break;
+      case ".":
+        if (!checkDecimal()) {
+          inputDisplay.textContent += ".";
+        }
+        break;
+      case "Enter":
+        if (!checkFirstNumber() && !checkOperator()) {
+          break;
+        }
+        if (checkFirstNumber()) {
+          secondNumber = inputDisplay.textContent;
+        }
+        if (checkFirstNumber() && checkSecondNumber()) {
+          solve();
+        }
+        if (!checkFirstNumber()) {
+          firstNumber = result;
+        }
+        inputDisplay.textContent = null;
+        console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
+        break;
+      case "Backspace":
+        inputDisplay.textContent = inputDisplay.textContent.substring(
+          0,
+          inputDisplay.textContent.length - 1
+        );
+        break;
+      case "Escape":
+        firstNumber = null;
+        operator = null;
+        secondNumber = null;
+        result = null;
+        inputDisplay.textContent = null;
+        resultDisplay.textContent = null;
+        break;
+      default:
+        return;
+    }
+
+    // Cancel the default action to avoid it being handled twice
+    event.preventDefault();
+  },
+  true
+);
