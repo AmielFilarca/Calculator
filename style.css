@@ -162,3 +162,56 @@ button:focus {
 #equals::before {
   border: 7px solid #2980b9;
 }
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  .main-container {
+    width: 400px;
+    height: 80vh;
+    margin: auto;
+  }
+  button {
+    width: 70px;
+    height: 70px;
+    font-size: 1rem;
+  }
+  #clear,
+  #equals {
+    width: 140px;
+    font-size: 1rem;
+  }
+  #clear::before,
+  #equals::before {
+    width: 140px;
+  }
+  .display {
+    margin: 30px auto 20px;
+    padding: 30px 20px;
+    width: 80%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid var(--accent-color);
+    color: var(--font-color);
+    box-shadow: 0 30px 85px rgba(0, 0, 0, 0.14), 0 15px 35px rgba(0, 0, 0, 0.14);
+    border-radius: 24px;
+  }
+  .display .input {
+    height: 50%;
+    width: 100%;
+    flex-grow: 1;
+    font-family: "Lato", sans-serif;
+    font-size: 1em;
+    overflow: hidden;
+    text-align: end;
+  }
+  .display .result {
+    height: 50%;
+    width: 100%;
+    flex-grow: 1;
+    font-family: "Lato", sans-serif;
+    font-size: 1em;
+    overflow: auto;
+    text-align: end;
+  }
+}
