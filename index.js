@@ -156,6 +156,8 @@ backspace.addEventListener("click", () => {
   );
 });
 
+const decimal = document.querySelector("#decimal");
+
 window.addEventListener(
   "keydown",
   function (event) {
@@ -164,11 +166,13 @@ window.addEventListener(
     }
 
     if (event.key in numbers) {
+      animate(document.querySelector(`#num${event.key}`));
       inputDisplay.textContent += event.key;
     }
 
     switch (event.key) {
       case "+":
+        animate(document.querySelector("#add"));
         if (checkFirstNumber()) {
           secondNumber = inputDisplay.textContent;
         } else {
@@ -185,6 +189,7 @@ window.addEventListener(
         console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
         break;
       case "-":
+        animate(document.querySelector("#subtract"));
         if (checkFirstNumber()) {
           secondNumber = inputDisplay.textContent;
         } else {
@@ -201,6 +206,7 @@ window.addEventListener(
         console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
         break;
       case "*":
+        animate(document.querySelector("#multiply"));
         if (checkFirstNumber()) {
           secondNumber = inputDisplay.textContent;
         } else {
@@ -217,6 +223,7 @@ window.addEventListener(
         console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
         break;
       case "/":
+        animate(document.querySelector("#divide"));
         if (checkFirstNumber()) {
           secondNumber = inputDisplay.textContent;
         } else {
@@ -233,11 +240,13 @@ window.addEventListener(
         console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
         break;
       case ".":
-        if (!checkDecimal()) {
+        animate(decimal);
+        if (!checkDecimal(decimal)) {
           inputDisplay.textContent += ".";
         }
         break;
       case "Enter":
+        animate(equals);
         if (!checkFirstNumber() && !checkOperator()) {
           break;
         }
@@ -254,12 +263,23 @@ window.addEventListener(
         console.log(`${firstNumber} ${operator} ${secondNumber} = ${result}`);
         break;
       case "Backspace":
+        animate(backspace);
         inputDisplay.textContent = inputDisplay.textContent.substring(
           0,
           inputDisplay.textContent.length - 1
         );
         break;
       case "Escape":
+        animate(clear);
+        firstNumber = null;
+        operator = null;
+        secondNumber = null;
+        result = null;
+        inputDisplay.textContent = null;
+        resultDisplay.textContent = null;
+        break;
+      case "Delete":
+        animate(clear);
         firstNumber = null;
         operator = null;
         secondNumber = null;
@@ -276,3 +296,9 @@ window.addEventListener(
   },
   true
 );
+
+function animate(element) {
+  element.classList.remove("run-animation");
+  void element.offsetWidth;
+  element.classList.add("run-animation");
+}
