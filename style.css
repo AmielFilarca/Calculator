@@ -168,7 +168,7 @@ button:focus {
 #equals::before {
   border: 7px solid #2980b9;
 }
-@media (max-width: 450px) {
+@media screen and (max-width: 450px) {
   .main-container {
     width: 100vw;
     height: 80vh;
